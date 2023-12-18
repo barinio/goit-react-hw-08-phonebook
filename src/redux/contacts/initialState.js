@@ -5,4 +5,10 @@ export const INITIAL_STATE = {
     error: null,
   },
   filter: '',
+  item: {
+    id: null,
+    name: '',
+    number: '',
+  },
+  isOpenModal: false,
 };

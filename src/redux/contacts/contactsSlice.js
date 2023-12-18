@@ -3,7 +3,8 @@ import { INITIAL_STATE } from './initialState';
 import {
   requestAddContact,
   requestContacts,
-  requestDeleteContacts,
+  requestDeleteContact,
+  requestUpdateContact,
 } from 'services/api';
 
 export const fetchAll = createAsyncThunk(
@@ -32,8 +33,19 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkAPI) => {
     try {
-      const deletedContact = await requestDeleteContacts(contactId);
+      const deletedContact = await requestDeleteContact(contactId);
       return deletedContact;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const updateContact = createAsyncThunk(
+  'contacts/updateContact',
+  async (contactData, thunkAPI) => {
+    try {
+      const updateContact = await requestUpdateContact(contactData);
+      return updateContact;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -60,6 +72,14 @@ const onDeleteContactFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.items = state.items.filter(c => c.id !== payload.id);
 };
+const onUpdateContactFulfilled = (state, { payload }) => {
+  state.isLoading = false;
+  state.items = state.items.map(contact =>
+    contact.id === payload.id
+      ? { ...contact, name: payload.name, number: payload.number }
+      : contact
+  );
+};
 
 const contactsSlice = createSlice({
   name: 'contactsList',
@@ -69,13 +89,24 @@ const contactsSlice = createSlice({
       .addCase(fetchAll.fulfilled, onFetchAllFulfilled)
       .addCase(addContact.fulfilled, onAddContactFulfilled)
       .addCase(deleteContact.fulfilled, onDeleteContactFulfilled)
+      .addCase(updateContact.fulfilled, onUpdateContactFulfilled)
 
       .addMatcher(
-        isAnyOf(deleteContact.pending, fetchAll.pending, addContact.pending),
+        isAnyOf(
+          deleteContact.pending,
+          fetchAll.pending,
+          addContact.pending,
+          updateContact.pending
+        ),
         onPending
       )
       .addMatcher(
-        isAnyOf(deleteContact.rejected, fetchAll.rejected, addContact.rejected),
+        isAnyOf(
+          deleteContact.rejected,
+          fetchAll.rejected,
+          addContact.rejected,
+          updateContact.rejected
+        ),
         onRejected
       ),
 });

@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// ----------- auth-service -------------------
-
 const instance = axios.create({
   baseURL: 'https://connections-api.herokuapp.com',
 });
@@ -9,6 +7,8 @@ const instance = axios.create({
 export const setToken = token => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
+
+// ----------- auth-service -------------------
 
 export const requestSignup = async body => {
   const { data } = await instance.post('/users/signup', body);
@@ -41,7 +41,12 @@ export const requestAddContact = async newContact => {
   const { data } = await instance.post('/contacts', newContact);
   return data;
 };
-export const requestDeleteContacts = async contactId => {
+export const requestDeleteContact = async contactId => {
   const { data } = await instance.delete(`/contacts/${contactId}`);
+  return data;
+};
+
+export const requestUpdateContact = async ({ id, values }) => {
+  const { data } = await instance.patch(`/contacts/${id}`, values);
   return data;
 };

@@ -20,7 +20,7 @@ export const NavList = styled.ul`
 `;
 export const NavLinkStyled = styled(NavLink)`
   font-size: 24px;
-  background-image: linear-gradient(to bottom, #00bfff, #1035ac);
+  background-image: linear-gradient(to bottom, red, black);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -33,7 +33,7 @@ export const NavLinkStyled = styled(NavLink)`
     &::after {
       position: absolute;
       content: '';
-      background-image: linear-gradient(to right, #1035ac, #00bfff);
+      background-image: linear-gradient(to right, black, red);
       border-radius: 2px;
       width: 100%;
       height: 4px;

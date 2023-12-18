@@ -14,6 +14,8 @@ import {
 } from 'redux-persist';
 
 import storage from 'redux-persist/lib/storage';
+import { itemReducer } from './contacts/itemSlice';
+import { isOpenModalReducer } from './contacts/isOpenModalSlilce';
 
 const authConfig = {
   key: 'auth',
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
   contacts: contactsReducer,
   filter: filterReducer,
   auth: persistReducer(authConfig, authReducer),
+  item: itemReducer,
+  isOpenModal: isOpenModalReducer,
 });
 export const store = configureStore({
   reducer: rootReducer,
