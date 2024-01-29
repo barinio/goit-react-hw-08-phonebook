@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-
+import { AiOutlineEdit } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectVisibleContacts } from 'redux/contacts/contacts.selectors';
@@ -24,9 +24,9 @@ export const ContactsList = () => {
       <Table>
         <TabletHead>
           <tr>
+            <th></th>
             <th>Name</th>
             <th>Phone</th>
-            <th></th>
             <th></th>
           </tr>
         </TabletHead>
@@ -34,10 +34,11 @@ export const ContactsList = () => {
           {contacts.map(({ id, name, number }) => {
             return (
               <ItemRow key={id}>
-                <td onClick={() => handleOpen({ id, name, number })}>{name}</td>
                 <td onClick={() => handleOpen({ id, name, number })}>
-                  {number}
+                  <AiOutlineEdit size="24" color="black" />
                 </td>
+                <td>{name}</td>
+                <td>{number}</td>
 
                 <td>
                   <button

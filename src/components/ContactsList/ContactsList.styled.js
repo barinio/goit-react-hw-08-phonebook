@@ -10,16 +10,25 @@ export const TabletHead = styled.thead`
     display: flex;
     padding: 3px;
     gap: 15px;
-    & th:nth-child(1) {
+
+    & th:nth-child(2) {
       width: 200px;
       word-wrap: break-word;
     }
-    & th:nth-child(2) {
+    & th:nth-child(3) {
       width: 150px;
+      word-wrap: break-word;
+    }
+    & th:nth-child(4) {
+      width: 70px;
       word-wrap: break-word;
     }
     & th:not(:last-child) {
       border-bottom: 3px solid #1035ac;
+    }
+    & th:nth-child(1) {
+      width: 24px;
+      border-bottom: none;
     }
   }
 `;
@@ -36,18 +45,21 @@ export const ItemRow = styled.tr`
   justify-content: space-between;
   align-items: center;
   padding: 3px;
+  gap: 15px;
+
   & td {
     padding-bottom: 5px;
   }
-  & td:nth-child(1) {
+
+  & td:nth-child(2) {
     width: 200px;
     word-wrap: break-word;
   }
-  & td:nth-child(2) {
+  & td:nth-child(3) {
     width: 150px;
     word-wrap: break-word;
   }
-  & td:nth-child(3) {
+  & td:nth-child(4) {
     & button {
       text-transform: uppercase;
       font-size: 15px;
@@ -65,5 +77,10 @@ export const ItemRow = styled.tr`
   }
   & td:not(:last-child) {
     border-bottom: 3px dashed #1035ac;
+  }
+  & td:nth-child(1) {
+    width: 24px;
+    border-bottom: none;
+    padding-bottom: 0;
   }
 `;

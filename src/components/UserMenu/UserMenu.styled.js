@@ -8,7 +8,7 @@ export const LogoutBox = styled.div`
     text-transform: capitalize;
     font-weight: 700;
     font-size: 24px;
-    background-image: linear-gradient(to bottom, pink, red);
+    background-image: linear-gradient(to top, darkred, red);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

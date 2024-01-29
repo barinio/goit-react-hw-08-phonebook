@@ -13,8 +13,9 @@ body {
 	overflow: hidden;
 
 	min-height: 100vh;
+	color:;
 	height: 100%;
-	background-image: linear-gradient(55deg, gold, black, gold, black, gold);
+	background-image: linear-gradient(55deg, goldenrod, gold, goldenrod);
 }
 
 code {
